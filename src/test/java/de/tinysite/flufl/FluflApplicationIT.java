@@ -1,19 +1,37 @@
 package de.tinysite.flufl;
 
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.test.context.SpringBootTest;
+
+import java.io.File;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class FluflApplicationTest {
-	@Value("${testprocess-file}")
-	String testfile = "";
+	private final String TEST_FILE = "src/test/resources/flufl-it-commands.txt";
+	private final String TEST_IMAGE_FILE="flufl.jpg";
+	@BeforeEach
+	public  void prepare(){
+		deleteTestImage();
 
-	@Test
-	void contextLoads() {
+	}@AfterEach
+	public void cleanUp(){
+deleteTestImage();
 	}
 	@Test
-	public void main() {
-		FluflApplication.main(new String[] {testfile});
+	public void testFluflApplication() {
+
+
+
+
+		FluflApplication.main(new String[] {TEST_FILE});
+		assertTrue(new File(TEST_IMAGE_FILE).exists());
+	}
+
+	private void deleteTestImage(){
+		File testImage =new File(TEST_IMAGE_FILE);
+		testImage.delete();
 	}
 
 }

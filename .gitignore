@@ -39,3 +39,6 @@ build/
 *.original
 *.txt
 .DS_Store
+/application.properties
+src/main/java/de/tinysite/flufl/plesk/rest/dto/*.java
+src/main/java/de/tinysite/flufl/plesk/rest/api/*.java

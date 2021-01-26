@@ -1,0 +1,49 @@
+# The deployment uses the following properties:
+
+# pico-site.structure.template.location     Location of the template for the new Pico instance
+# pico-site.config-file.template.location   Location of the configuration template file
+
+# pico-site.target.location                 Location of the virtual hosts folder
+# htdocs.location                           Document root for the local server
+# local-pico-cloud.base-url                 Base URL
+
+# cloud.deployer                            Deployment mode (options: local, plesk, dummy)
+
+# Local mode deployment
+
+# 1. The folder specified in pico-site.structure.template.location is copied to htdocs.location
+# 2. The config file located under pico-site.config-file.template.location is processed and copied into the config directory of the new Pico instance
+# 3. During processing, placeholders in the config template file are replaced with actual values. These placeholders have the format {{param_name}}
+# 4. The URL of the Pico instance is written to standard output (local-pico-cloud.base-url/site-name)
+
+# Plesk mode deployment
+
+# Plesk mode deployment is almost identical.
+# However, in addition the deployment process also creates a subdomain for the new Pico instance and sends the link to the site to the user.
+
+# Replace the values below with your own.
+
+
+pico-site.structure.template.location=/Users/void/projects/data/pico-template
+pico-site.config-file.template.location=/Users/void/projects/data/config-template.yml
+
+pico-site.target.location=/private/var/www/vhosts
+htdocs.location=/Applications/MAMP/htdocs
+local-pico-cloud.base-url=http://localhost:8888/
+
+
+logging.level.root=INFO
+logging.level.de.tinysite.flufl.FluflApplication=OFF
+logging.level.de.tinysite.flufl.deployers=INFO
+
+
+spring.mail.host=smtp.example.com
+spring.mail.port=25
+spring.mail.properties.mail.transport.protocol=smtp
+spring.mail.username=flufl@example.com
+spring.mail.password=****
+spring.mail.properties.mail.smtp.auth=false
+spring.mail.properties.mail.smtp.starttls.enable=true
+mail.smtp.debug=true
+cloud.deployer=local
+

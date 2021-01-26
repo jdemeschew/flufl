@@ -30,16 +30,16 @@ import java.util.List;
 
 @SpringBootApplication
 public class FluflApplication implements CommandLineRunner {
-	private StatusSubCommand statusSubCommand;
+	private SetParamCommand.StatusSubCommand statusSubCommand;
 	private DeployProcessSubCommand deployProcessSubCommand;
 	private ListProcessesSubCommand listProcessesSubCommand;
-	private SetVarSubCommand setVarSubCommand;
+	private SetParamCommand setVarSubCommand;
 	private ExecuteProcessSubCommand executeProcessSubCommand;
 	private ListTasksSubCommand listTasksSubCommand;
 	private CompleteTaskSubCommand completeTaskSubCommand;
 	private SaveHistorySubCommand saveHistorySubCommand;
 	private ExecuteBatchSubCommand executeBatchSubCommand;
-	private ListVarsSubCommand listVarsSubCommand;
+	private ListParamsSubCommand listVarsSubCommand;
 	private ListHistorySubCommand listHistorySubCommand;
 	private LoadHistorySubCommand loadHistorySubCommand;
 	private GenerateImageSubCommand generateImageSubCommand;
@@ -84,18 +84,18 @@ public class FluflApplication implements CommandLineRunner {
 	@Autowired
 	public  FluflApplication(
 
-			final StatusSubCommand statusSubCommand,
+			final SetParamCommand.StatusSubCommand statusSubCommand,
 			final DeployProcessSubCommand deployProcessSubCommand,
 			final ListProcessesSubCommand listProcessesSubCommand,
 			final ExecuteProcessSubCommand executeProcessSubCommand,
 			final ListTasksSubCommand listTasksSubCommand,
 			final CompleteTaskSubCommand completeTaskSubCommand,
-			final SetVarSubCommand setVarSubCommand,
+			final SetParamCommand setVarSubCommand,
 			final SaveHistorySubCommand saveHistorySubCommand,
 			final ExecuteBatchSubCommand executeBatchSubCommand,
 			final ListHistorySubCommand listHistorySubCommand,
 			final LoadHistorySubCommand loadHistorySubCommand,
-			final ListVarsSubCommand listVarsSubCommand,
+			final ListParamsSubCommand listVarsSubCommand,
 			final GenerateImageSubCommand generateImageSubCommand,
 			final ClearHistorySubCommand clearHistorySubCommand){
 		this.statusSubCommand = statusSubCommand;
