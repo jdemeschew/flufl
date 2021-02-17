@@ -5,7 +5,7 @@
 
 # pico-site.target.location                 Location of the virtual hosts folder
 # htdocs.location                           Document root for the local server
-# local-pico-cloud.base-url                 Base URL
+# localhost.base-url                 Base URL
 
 # cloud.deployer                            Deployment mode (options: local, plesk, dummy)
 
@@ -14,7 +14,7 @@
 # 1. The folder specified in pico-site.structure.template.location is copied to htdocs.location
 # 2. The config file located under pico-site.config-file.template.location is processed and copied into the config directory of the new Pico instance
 # 3. During processing, placeholders in the config template file are replaced with actual values. These placeholders have the format {{param_name}}
-# 4. The URL of the Pico instance is written to standard output (local-pico-cloud.base-url/site-name)
+# 4. The URL of the Pico instance is written to standard output (localhost.base-url/site-name)
 
 # Plesk mode deployment
 
@@ -29,12 +29,11 @@ pico-site.config-file.template.location=/Users/void/projects/data/config-templat
 
 pico-site.target.location=/private/var/www/vhosts
 htdocs.location=/Applications/MAMP/htdocs
-local-pico-cloud.base-url=http://localhost:8888/
+localhost.base-url=http://localhost:8888/
 
 
-logging.level.root=INFO
-logging.level.de.tinysite.flufl.FluflApplication=OFF
-logging.level.de.tinysite.flufl.deployers=INFO
+logging.level.root=OFF
+logging.level.de.tinysite=INFO
 
 
 spring.mail.host=smtp.example.com
