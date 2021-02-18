@@ -110,7 +110,7 @@ public class FlowableServiceImpl implements FlowableService {
     @Override
     public void executeProcess(final String processName) {
         final ProcessDefinition targetProcessDefinition = repositoryService.createProcessDefinitionQuery()
-                .processDefinitionName(processName).singleResult();
+                .processDefinitionName(processName).latestVersion().singleResult();
         logger.info("Executing process {}", targetProcessDefinition.getName());
         processInstance = this.getRuntimeService().startProcessInstanceById(targetProcessDefinition.getId(), taskVars);
 
