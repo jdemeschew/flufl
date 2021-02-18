@@ -152,6 +152,7 @@ public class FlowableServiceImpl implements FlowableService {
         if (taskService.createTaskQuery().list().size()>0) {
             final Task targetTask = taskService.createTaskQuery().list().get(taskId);
             taskService.complete(targetTask.getId(), taskVars);
+            taskService.deleteTask(targetTask.getId());
         } else {
         }
     }
