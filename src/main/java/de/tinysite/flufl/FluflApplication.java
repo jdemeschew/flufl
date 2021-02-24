@@ -30,16 +30,16 @@ import java.util.List;
 
 @SpringBootApplication
 public class FluflApplication implements CommandLineRunner {
-	private SetParamCommand.StatusSubCommand statusSubCommand;
+	private SetVarCommand.StatusSubCommand statusSubCommand;
 	private DeployProcessSubCommand deployProcessSubCommand;
 	private ListProcessesSubCommand listProcessesSubCommand;
-	private SetParamCommand setVarSubCommand;
+	private SetVarCommand setVarSubCommand;
 	private ExecuteProcessSubCommand executeProcessSubCommand;
 	private ListTasksSubCommand listTasksSubCommand;
 	private CompleteTaskSubCommand completeTaskSubCommand;
 	private SaveHistorySubCommand saveHistorySubCommand;
 	private ExecuteBatchSubCommand executeBatchSubCommand;
-	private ListParamsSubCommand listVarsSubCommand;
+	private ListVarsSubCommand listVarsSubCommand;
 	private ListHistorySubCommand listHistorySubCommand;
 	private LoadHistorySubCommand loadHistorySubCommand;
 	private GenerateImageSubCommand generateImageSubCommand;
@@ -84,18 +84,18 @@ public class FluflApplication implements CommandLineRunner {
 	@Autowired
 	public  FluflApplication(
 
-			final SetParamCommand.StatusSubCommand statusSubCommand,
+			final SetVarCommand.StatusSubCommand statusSubCommand,
 			final DeployProcessSubCommand deployProcessSubCommand,
 			final ListProcessesSubCommand listProcessesSubCommand,
 			final ExecuteProcessSubCommand executeProcessSubCommand,
 			final ListTasksSubCommand listTasksSubCommand,
 			final CompleteTaskSubCommand completeTaskSubCommand,
-			final SetParamCommand setVarSubCommand,
+			final SetVarCommand setVarSubCommand,
 			final SaveHistorySubCommand saveHistorySubCommand,
 			final ExecuteBatchSubCommand executeBatchSubCommand,
 			final ListHistorySubCommand listHistorySubCommand,
 			final LoadHistorySubCommand loadHistorySubCommand,
-			final ListParamsSubCommand listVarsSubCommand,
+			final ListVarsSubCommand listVarsSubCommand,
 			final GenerateImageSubCommand generateImageSubCommand,
 			final ClearHistorySubCommand clearHistorySubCommand){
 		this.statusSubCommand = statusSubCommand;

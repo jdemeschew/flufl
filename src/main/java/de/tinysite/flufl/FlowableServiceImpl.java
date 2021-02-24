@@ -118,9 +118,9 @@ public class FlowableServiceImpl implements FlowableService {
     }
 
     /**
-     * Sets a named parameter that will be available in executions used in JavaDelegates and ExecutionListeners.
-     * @param name parameter name
-     * @param value parameter value
+     * Sets a named variable that will be available in executions used in JavaDelegates and ExecutionListeners.
+     * @param name Variable name
+     * @param value Variable value
      */
     @Override
     public void setVar(final String name, final Object value) {
@@ -226,7 +226,7 @@ public class FlowableServiceImpl implements FlowableService {
     }
 
     /**
-     * Prints the list of all defined parameters with their values.
+     * Prints the list of all defined variables with their values.
      * @return
      */
     @Override
