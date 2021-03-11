@@ -14,12 +14,12 @@ import picocli.CommandLine;
 Sets a named parameter that will be available in executions used in JavaDelegates and ExecutionListeners.
 If applied after complete-task, the param  will be available in the next running task.
  */
- @CommandLine.Command(name ="set-param")
- public class SetParamCommand implements Runnable {
-    @CommandLine.Option(names = { "--name"}, description = "param name",required = true)
+ @CommandLine.Command(name ="set-var")
+ public class SetVarCommand implements Runnable {
+    @CommandLine.Option(names = { "--name"}, description = "var name",required = true)
     private String name;
 
-    @CommandLine.Option(names = {"--value"}, description = "param value",required = true)
+    @CommandLine.Option(names = {"--value"}, description = "var value",required = true)
     private Object value;
 
 

@@ -10,8 +10,8 @@ import picocli.CommandLine;
 Lists all defined params
  */
 @Component
- @CommandLine.Command(name ="list-params")
- public class ListParamsSubCommand implements Runnable {
+ @CommandLine.Command(name ="list-vars")
+ public class ListVarsSubCommand implements Runnable {
     private FlowableService flowableService;
 
 
