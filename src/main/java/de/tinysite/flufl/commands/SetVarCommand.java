@@ -2,9 +2,11 @@ package de.tinysite.flufl.commands;
 
 import de.tinysite.flufl.FlowableService;
 import de.tinysite.flufl.FlowableServiceImpl;
+import de.tinysite.flufl.utils.ApplicationContextProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 import picocli.CommandLine;
 
@@ -51,9 +53,11 @@ If applied after complete-task, the param  will be available in the next running
      {
 flowableService.setVar(name,value);
      }
+     ApplicationContext context = ApplicationContextProvider.getApplicationContext();
 @Autowired
     public void setFlowableService(FlowableService flowableService) {
-        this.flowableService = flowableService;
+
+         this.flowableService = flowableService;
     }
 
     /* Returns the status of the Flowable Engine */
