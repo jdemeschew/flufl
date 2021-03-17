@@ -2,6 +2,7 @@ package de.tinysite.flufl.commands;
 
 import de.tinysite.flufl.FlowableService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 import picocli.CommandLine;
 
@@ -9,6 +10,7 @@ import picocli.CommandLine;
 Lists all commands executed since Flufl start or since the last call to the clear-history command.
  */
 @Component
+@Qualifier("fluflCommand")
  @CommandLine.Command(name ="list-history")
  public class ListHistorySubCommand implements Runnable {
     private FlowableService flowableService;

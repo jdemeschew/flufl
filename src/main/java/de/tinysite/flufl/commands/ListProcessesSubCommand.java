@@ -2,11 +2,13 @@ package de.tinysite.flufl.commands;
 
 import de.tinysite.flufl.FlowableService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 import picocli.CommandLine;
 /* Lists all loaded processes */
 
 @Component
+@Qualifier("fluflCommand")
 @CommandLine.Command(name = "list-processes")
 public class ListProcessesSubCommand implements Runnable {
     private FlowableService flowableService;

@@ -2,6 +2,7 @@ package de.tinysite.flufl.commands;
 
 import de.tinysite.flufl.FlowableService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 import picocli.CommandLine;
 
@@ -9,6 +10,7 @@ import picocli.CommandLine;
 Generates an image of the current process
  */
 @Component
+@Qualifier("fluflCommand")
  @CommandLine.Command(name ="generate-image")
  public class GenerateImageSubCommand implements Runnable {
     @CommandLine.Option(names = {"--name"}, description = "Generates an image for the process with the given name",required = true)

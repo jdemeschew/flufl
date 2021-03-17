@@ -6,6 +6,7 @@ import de.tinysite.flufl.utils.ApplicationContextProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 import picocli.CommandLine;
@@ -16,6 +17,7 @@ import picocli.CommandLine;
 Sets a named parameter that will be available in executions used in JavaDelegates and ExecutionListeners.
 If applied after complete-task, the param  will be available in the next running task.
  */
+@Qualifier("fluflCommand")
  @CommandLine.Command(name ="set-var")
  public class SetVarCommand implements Runnable {
     @CommandLine.Option(names = { "--name"}, description = "var name",required = true)
@@ -53,7 +55,7 @@ If applied after complete-task, the param  will be available in the next running
      {
 flowableService.setVar(name,value);
      }
-     ApplicationContext context = ApplicationContextProvider.getApplicationContext();
+    // ApplicationContext context = ApplicationContextProvider.getApplicationContext();
 @Autowired
     public void setFlowableService(FlowableService flowableService) {
 

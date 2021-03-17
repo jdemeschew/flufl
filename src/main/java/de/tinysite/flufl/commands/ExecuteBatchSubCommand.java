@@ -3,6 +3,7 @@ package de.tinysite.flufl.commands;
 import org.jline.console.SystemRegistry;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 import picocli.CommandLine;
 
@@ -11,6 +12,7 @@ import picocli.CommandLine;
  * Effectively, writes commands from the file into history and then executes all commands in history
  */
 @Component
+@Qualifier("fluflCommand")
 @CommandLine.Command(name ="execute-batch")
  public class ExecuteBatchSubCommand implements Runnable {
     private Logger logger = LoggerFactory.getLogger(ExecuteBatchSubCommand.class);

@@ -2,6 +2,7 @@ package de.tinysite.flufl.commands;
 
 import de.tinysite.flufl.FlowableService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 import picocli.CommandLine;
 
@@ -10,6 +11,7 @@ import picocli.CommandLine;
  * Completes the task with the specified id
  */
 @Component
+@Qualifier("fluflCommand")
  @CommandLine.Command(name ="complete-task")
  public class CompleteTaskSubCommand implements Runnable {
 

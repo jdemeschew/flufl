@@ -15,6 +15,7 @@ import org.jline.terminal.TerminalBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -79,40 +80,13 @@ public class FluflApplication implements CommandLineRunner {
 	private String prompt = "#";
 	private String rightPrompt = null;
 	private SystemRegistry systemRegistry;
-
+List<Runnable> commands;
 
 	@Autowired
 	public  FluflApplication(
-
-			final SetVarCommand.StatusSubCommand statusSubCommand,
-			final DeployProcessSubCommand deployProcessSubCommand,
-			final ListProcessesSubCommand listProcessesSubCommand,
-			final ExecuteProcessSubCommand executeProcessSubCommand,
-			final ListTasksSubCommand listTasksSubCommand,
-			final CompleteTaskSubCommand completeTaskSubCommand,
-			final SetVarCommand setVarSubCommand,
-			final SaveHistorySubCommand saveHistorySubCommand,
-			final ExecuteBatchSubCommand executeBatchSubCommand,
-			final ListHistorySubCommand listHistorySubCommand,
-			final LoadHistorySubCommand loadHistorySubCommand,
-			final ListVarsSubCommand listVarsSubCommand,
-			final GenerateImageSubCommand generateImageSubCommand,
-			final ClearHistorySubCommand clearHistorySubCommand){
-		this.statusSubCommand = statusSubCommand;
-		this.deployProcessSubCommand =deployProcessSubCommand;
-		this.listProcessesSubCommand =listProcessesSubCommand;
-		this.setVarSubCommand =setVarSubCommand;
-		this.executeProcessSubCommand =executeProcessSubCommand;
-		this.listTasksSubCommand =listTasksSubCommand;
-		this.completeTaskSubCommand =completeTaskSubCommand;
-		this.saveHistorySubCommand=saveHistorySubCommand;
-		this.executeBatchSubCommand=executeBatchSubCommand;
-		this.listVarsSubCommand=listVarsSubCommand;
-		this.listHistorySubCommand =listHistorySubCommand;
-		this.loadHistorySubCommand = loadHistorySubCommand;
-		this.generateImageSubCommand =generateImageSubCommand;
-		this.clearHistorySubCommand=clearHistorySubCommand;
-
+			@Qualifier("fluflCommand")
+			List<Runnable> commands){
+		this.commands =commands;
 
 
 		try {
@@ -129,29 +103,16 @@ public class FluflApplication implements CommandLineRunner {
 	public void run(String... args) {
 
 	final 	CommandLine commandLine = new CommandLine(new CliCommands());
-commandLine.addSubcommand(statusSubCommand);
-commandLine.addSubcommand(deployProcessSubCommand);
-		commandLine.addSubcommand(listProcessesSubCommand);
-		commandLine.addSubcommand(executeProcessSubCommand);
-		commandLine.addSubcommand(listTasksSubCommand);
-		commandLine.addSubcommand(completeTaskSubCommand);
-		commandLine.addSubcommand(listVarsSubCommand);
-		commandLine.addSubcommand(listHistorySubCommand);
-		commandLine.addSubcommand(setVarSubCommand);
-		commandLine.addSubcommand(loadHistorySubCommand);
+	for(Runnable command:commands)
+		commandLine.addSubcommand(command);
 
-		commandLine.addSubcommand(saveHistorySubCommand);
-		executeBatchSubCommand.setSystemRegistry(systemRegistry);
-		commandLine.addSubcommand(executeBatchSubCommand);
-		commandLine.addSubcommand(generateImageSubCommand);
-		commandLine.addSubcommand(clearHistorySubCommand);
 	final 	PicocliCommands picocliCommands = new PicocliCommands(CWD,commandLine);
 	final 	LineReader  reader = LineReaderBuilder.builder().terminal(terminal)
 				.variable(LineReader.LIST_MAX,50).build();
 		final Parser parser = new DefaultParser();
 		systemRegistry = new SystemRegistryImpl(parser, terminal, null, null);
 		systemRegistry.setCommandRegistries(picocliCommands);
-		commandLine.execute("status");
+		//commandLine.execute("status");
 		systemRegistry.cleanUp();
 		if (args.length>=1){
 

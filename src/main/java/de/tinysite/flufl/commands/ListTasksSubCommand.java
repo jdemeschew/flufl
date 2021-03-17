@@ -2,6 +2,7 @@ package de.tinysite.flufl.commands;
 
 import de.tinysite.flufl.FlowableService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 import picocli.CommandLine;
 
@@ -9,7 +10,7 @@ import picocli.CommandLine;
 Lists all running tasks
  */
 @Component
-
+@Qualifier("fluflCommand")
  @CommandLine.Command(name ="list-tasks", description = "lists all running tasks")
 
  public class ListTasksSubCommand implements Runnable {
