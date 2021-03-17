@@ -17,7 +17,7 @@ import picocli.CommandLine;
 Sets a named parameter that will be available in executions used in JavaDelegates and ExecutionListeners.
 If applied after complete-task, the param  will be available in the next running task.
  */
-@Qualifier("fluflCommand")
+@FluflCommand
  @CommandLine.Command(name ="set-var")
  public class SetVarCommand implements Runnable {
     @CommandLine.Option(names = { "--name"}, description = "var name",required = true)

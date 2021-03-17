@@ -10,7 +10,7 @@ import picocli.CommandLine;
 Executes the process with the provided name
  */
 @Component
-@Qualifier("fluflCommand")
+@FluflCommand
 @CommandLine.Command(name = "execute-process")
 public class ExecuteProcessSubCommand implements Runnable {
     @CommandLine.Option(names = {"--name"}, description = "Completes process with the given name",required = true)

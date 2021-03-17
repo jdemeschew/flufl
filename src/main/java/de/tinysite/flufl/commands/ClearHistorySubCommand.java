@@ -9,6 +9,7 @@ import picocli.CommandLine;
  * Clears the command history
  */
 @Component
+@FluflCommand
  @CommandLine.Command(name ="clear-history")
  public class ClearHistorySubCommand implements Runnable {
     private FlowableService flowableService;

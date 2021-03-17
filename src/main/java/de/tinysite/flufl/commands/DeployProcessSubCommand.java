@@ -12,7 +12,7 @@ import java.io.IOException;
  * Deploys the process defined in the specified file
  */
 @Component
-@Qualifier("fluflCommand")
+@FluflCommand
 @CommandLine.Command(name="deploy-process")
 public class DeployProcessSubCommand implements Runnable {
     @CommandLine.Option(names = { "--file"}, description = "File name",required=true)

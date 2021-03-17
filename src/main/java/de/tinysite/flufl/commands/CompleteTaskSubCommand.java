@@ -11,7 +11,7 @@ import picocli.CommandLine;
  * Completes the task with the specified id
  */
 @Component
-@Qualifier("fluflCommand")
+@FluflCommand
  @CommandLine.Command(name ="complete-task")
  public class CompleteTaskSubCommand implements Runnable {
 

@@ -10,7 +10,7 @@ import picocli.CommandLine;
 Lists all running tasks
  */
 @Component
-@Qualifier("fluflCommand")
+@FluflCommand
  @CommandLine.Command(name ="list-tasks", description = "lists all running tasks")
 
  public class ListTasksSubCommand implements Runnable {

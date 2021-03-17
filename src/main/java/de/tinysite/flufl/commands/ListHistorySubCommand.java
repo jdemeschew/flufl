@@ -10,7 +10,7 @@ import picocli.CommandLine;
 Lists all commands executed since Flufl start or since the last call to the clear-history command.
  */
 @Component
-@Qualifier("fluflCommand")
+@FluflCommand
  @CommandLine.Command(name ="list-history")
  public class ListHistorySubCommand implements Runnable {
     private FlowableService flowableService;

@@ -11,7 +11,7 @@ import picocli.CommandLine;
 /* Loads history from the provided file */
 @Component
 @CommandLine.Command(name ="load-history")
-@Qualifier("fluflCommand")
+@FluflCommand
  public class LoadHistorySubCommand implements Runnable {
     private Logger logger = LoggerFactory.getLogger(LoadHistorySubCommand.class);
     @CommandLine.Option(names = { "--file"}, description = "File name")

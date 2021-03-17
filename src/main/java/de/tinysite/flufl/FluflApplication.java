@@ -84,7 +84,7 @@ List<Runnable> commands;
 
 	@Autowired
 	public  FluflApplication(
-			@Qualifier("fluflCommand")
+			@FluflCommand
 			List<Runnable> commands){
 		this.commands =commands;
 

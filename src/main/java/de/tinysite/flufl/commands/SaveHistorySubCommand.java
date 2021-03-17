@@ -10,7 +10,7 @@ import picocli.CommandLine;
 
 /* Saves history in the specified file */
 @Component
-@Qualifier("fluflCommand")
+@FluflCommand
 @CommandLine.Command(name ="save-history")
  public class SaveHistorySubCommand implements Runnable {
     private Logger logger = LoggerFactory.getLogger(SaveHistorySubCommand.class);

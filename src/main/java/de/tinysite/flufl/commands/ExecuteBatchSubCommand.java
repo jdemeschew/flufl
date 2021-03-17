@@ -12,7 +12,7 @@ import picocli.CommandLine;
  * Effectively, writes commands from the file into history and then executes all commands in history
  */
 @Component
-@Qualifier("fluflCommand")
+@FluflCommand
 @CommandLine.Command(name ="execute-batch")
  public class ExecuteBatchSubCommand implements Runnable {
     private Logger logger = LoggerFactory.getLogger(ExecuteBatchSubCommand.class);

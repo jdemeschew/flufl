@@ -10,8 +10,7 @@ import picocli.CommandLine;
 /*
 Lists all defined params
  */
-@Component
-@Qualifier("fluflCommand")
+@FluflCommand
  @CommandLine.Command(name ="list-vars")
  public class ListVarsSubCommand implements Runnable {
     private FlowableService flowableService;

@@ -8,7 +8,7 @@ import picocli.CommandLine;
 /* Lists all loaded processes */
 
 @Component
-@Qualifier("fluflCommand")
+@FluflCommand
 @CommandLine.Command(name = "list-processes")
 public class ListProcessesSubCommand implements Runnable {
     private FlowableService flowableService;

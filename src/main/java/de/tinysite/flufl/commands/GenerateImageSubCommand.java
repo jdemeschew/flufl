@@ -10,7 +10,7 @@ import picocli.CommandLine;
 Generates an image of the current process
  */
 @Component
-@Qualifier("fluflCommand")
+@FluflCommand
  @CommandLine.Command(name ="generate-image")
  public class GenerateImageSubCommand implements Runnable {
     @CommandLine.Option(names = {"--name"}, description = "Generates an image for the process with the given name",required = true)
