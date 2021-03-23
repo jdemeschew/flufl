@@ -30,7 +30,7 @@ public interface FlowableService {
     void setVar(String name,  Object value);
     void  listTasks();
 
-    void completeTask(Integer taskNumber);
+    void completeTask(String taskName);
     void addEntryToHistory(String entry);
     void saveHistory(String fileName);
     void loadHistory(String fileName);

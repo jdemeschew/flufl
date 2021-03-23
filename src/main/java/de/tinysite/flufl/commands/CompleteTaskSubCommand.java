@@ -15,15 +15,15 @@ import picocli.CommandLine;
  @CommandLine.Command(name ="complete-task")
  public class CompleteTaskSubCommand implements Runnable {
 
-    @CommandLine.Option(names = {"--id"}, description = "Completes task with the given id",required = true)
-    private Integer taskId;
+    @CommandLine.Option(names = {"--name"}, description = "Completes task with the given name",required = true)
+    private String  taskName;
     private FlowableService flowableService;
 
 
 
      @Override
      public void run() {
-flowableService.completeTask(taskId);
+flowableService.completeTask(taskName);
      }
 @Autowired
     public void setFlowableService(final FlowableService flowableService) {

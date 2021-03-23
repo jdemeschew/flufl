@@ -144,13 +144,13 @@ public class FlowableServiceImpl implements FlowableService {
 
     /**
      * Completes a running task.
-     * @param taskId the id of the task
+     * @param taskName the id of the task
      */
     @Override
-    public void completeTask(final Integer taskId) {
+    public void completeTask(String taskName) {
 
         if (taskService.createTaskQuery().list().size()>0) {
-            final Task targetTask = taskService.createTaskQuery().list().get(taskId);
+            final Task targetTask = taskService.createTaskQuery().taskName(taskName).list().get(0);
             taskService.complete(targetTask.getId(), taskVars);
             taskService.deleteTask(targetTask.getId());
         } else {
