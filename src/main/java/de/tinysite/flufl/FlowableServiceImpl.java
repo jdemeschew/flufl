@@ -142,6 +142,11 @@ public class FlowableServiceImpl implements FlowableService {
 
     }
 
+    @Override
+    public void listFluflets() {
+        logger.info("list-fluflets");
+    }
+
     /**
      * Completes a running task.
      * @param taskName the id of the task
