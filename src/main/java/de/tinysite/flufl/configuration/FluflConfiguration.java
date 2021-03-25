@@ -19,6 +19,8 @@ private String apiBasePath="";
     private String pleskApiUser="";
     @Value("${plesk-api.password:}")
     private String pleskApiPassword="";
+    @Value("${fluflets.repository.path:}")
+    String flufletsRepositoryPath="";
 
 
 }

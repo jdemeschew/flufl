@@ -143,8 +143,9 @@ public class FlowableServiceImpl implements FlowableService {
     }
 
     @Override
-    public void listFluflets() {
+    public void listFluflets(String flufletsDir, String filter) {
         logger.info("list-fluflets");
+
     }
 
     /**
