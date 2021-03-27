@@ -40,7 +40,8 @@ public class InstallFlufletSubCommand implements Runnable {
     @Override
     public void run()
     {
-logger.info("installing {} fluflet");
+        flufletService.installFluflet(flufletName);
+
 
 
     }
