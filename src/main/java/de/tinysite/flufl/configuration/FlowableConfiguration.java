@@ -1,8 +1,9 @@
 package de.tinysite.flufl.configuration;
 
+import de.tinysite.flufl.services.FlufletService;
+import de.tinysite.flufl.services.impl.FlufletServiceImpl;
 import org.flowable.engine.*;
 import org.flowable.engine.impl.cfg.StandaloneProcessEngineConfiguration;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -41,6 +42,10 @@ public class FlowableConfiguration {
     @Bean
     HistoryService historyService(){
         return  processEngine().getHistoryService();
+    }
+    @Bean
+    FlufletService flufletService(){
+        return new FlufletServiceImpl();
     }
 
 

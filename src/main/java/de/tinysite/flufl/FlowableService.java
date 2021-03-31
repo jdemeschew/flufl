@@ -29,6 +29,7 @@ public interface FlowableService {
      */
     void setVar(String name,  Object value);
     void  listTasks();
+    void listFluflets(String flufletsDir, String filter);
 
     void completeTask(String taskName);
     void addEntryToHistory(String entry);

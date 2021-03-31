@@ -6,11 +6,11 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.JavaMailSenderImpl;
+
 
 @Configuration()
-@ComponentScan(basePackages = {"de.tinysite.*.*"})
+//@ComponentScan(basePackages = {"de.tinysite.*.*"})
+@ComponentScan
 public class FluflConfiguration {
     private Logger logger = LoggerFactory.getLogger(FluflConfiguration.class);
     @Value("${plesk-api.base.path:}")
@@ -19,6 +19,8 @@ private String apiBasePath="";
     private String pleskApiUser="";
     @Value("${plesk-api.password:}")
     private String pleskApiPassword="";
+    @Value("${fluflets.repository.path:}")
+    String flufletsRepositoryPath="";
 
 
 }

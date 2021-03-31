@@ -11,6 +11,7 @@ import org.flowable.image.ProcessDiagramGenerator;
 import org.flowable.task.api.Task;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,7 +25,7 @@ import java.util.*;
  * Service class connecting Flufl commands with Flowable engine.
  */
 @Service
-public class FlowableServiceImpl implements FlowableService {
+public class FlowableServiceImpl implements FlowableService, DisposableBean {
     private ProcessInstance processInstance;
 
     private List<String> history = new ArrayList<>();
@@ -36,7 +37,6 @@ public class FlowableServiceImpl implements FlowableService {
     private RuntimeService runtimeService;
     @Autowired
     private TaskService taskService;
-    private Deployment deployment = null;
     private final Map<String, Object> taskVars = new HashMap();
 
     public void setHistory(final List<String> history) {
@@ -65,14 +65,16 @@ public class FlowableServiceImpl implements FlowableService {
     @Override
     public String status() {
         try {
+            processEngine.close();
             repositoryService.createDeploymentQuery().list();
 
 
         } catch (Exception e) {
             return "ERROR";
         } finally {
-            return "OK";
+
         }
+        return "OK";
     }
 
 
@@ -86,7 +88,7 @@ public class FlowableServiceImpl implements FlowableService {
     public void deployProcess( final String fileName) throws IOException {
         final File initialFile = new File(fileName);
         final InputStream targetStream = FileUtils.openInputStream(initialFile);
-        deployment = repositoryService.createDeployment()
+        Deployment deployment = repositoryService.createDeployment()
                 .addInputStream(fileName, targetStream)
                 .deploy();
         logger.info(String.format("File %s has been deployed", fileName));
@@ -133,12 +135,18 @@ public class FlowableServiceImpl implements FlowableService {
      */
     @Override
     public void listTasks() {
-        final List<Task> tasks = taskService.createTaskQuery().list();//taskCandidateGroup("managers").list();
+        final List<Task> tasks = taskService.createTaskQuery().list();
         System.out.println("You have " + tasks.size() + " tasks:");
         for (int i = 0; i < tasks.size(); i++) {
             System.out.println((i) + ") " + tasks.get(i).getName());
         }
 
+
+    }
+
+    @Override
+    public void listFluflets(String flufletsDir, String filter) {
+        logger.info("list-fluflets");
 
     }
 
@@ -149,11 +157,12 @@ public class FlowableServiceImpl implements FlowableService {
     @Override
     public void completeTask(String taskName) {
 
-        if (taskService.createTaskQuery().list().size()>0) {
+        if (!taskService.createTaskQuery().list().isEmpty()) {
             final Task targetTask = taskService.createTaskQuery().taskName(taskName).list().get(0);
             taskService.complete(targetTask.getId(), taskVars);
             taskService.deleteTask(targetTask.getId());
         } else {
+            logger.info("No tasks to show");
         }
     }
 
@@ -209,7 +218,7 @@ public class FlowableServiceImpl implements FlowableService {
      */
     @Override
     public String listHistory() {
-        final StringBuffer output = new StringBuffer("entry:").append(System.lineSeparator());
+        final StringBuilder output = new StringBuilder("entry:").append(System.lineSeparator());
         history.stream().forEach(entry -> {
 
             output.append(entry).append(System.lineSeparator());
@@ -231,7 +240,7 @@ public class FlowableServiceImpl implements FlowableService {
      */
     @Override
     public String listVars() {
-        final StringBuffer output = new StringBuffer("Variables:").append(System.lineSeparator());
+        final StringBuilder output = new StringBuilder("Variables:").append(System.lineSeparator());
         taskVars.keySet().stream().forEach(entry -> {
 
             output.append(entry).append("=")
@@ -258,7 +267,7 @@ public class FlowableServiceImpl implements FlowableService {
                 .list();
 
         List<String> activityIds = new ArrayList<>();
-        final List<String> flows = new ArrayList<>();
+        final List<String> flows ;
         for (Execution exe : executions) {
             final List<String> ids = runtimeService.getActiveActivityIds(exe.getId());
             activityIds.addAll(ids);
@@ -280,9 +289,12 @@ public class FlowableServiceImpl implements FlowableService {
      * @return process definition of the specified process.
      */
     private ProcessDefinition getProcessDefinition(String processName){
-        ProcessDefinition processDefinition = repositoryService.createProcessDefinitionQuery()
+        return repositoryService.createProcessDefinitionQuery()
                 .processDefinitionName(processName).singleResult();
-        return processDefinition;
     }
 
+    @Override
+    public void destroy() throws Exception {
+        processEngine.close();
+    }
 }

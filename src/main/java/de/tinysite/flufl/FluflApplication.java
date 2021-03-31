@@ -15,7 +15,6 @@ import org.jline.terminal.TerminalBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -31,20 +30,6 @@ import java.util.List;
 
 @SpringBootApplication
 public class FluflApplication implements CommandLineRunner {
-	private SetVarCommand.StatusSubCommand statusSubCommand;
-	private DeployProcessSubCommand deployProcessSubCommand;
-	private ListProcessesSubCommand listProcessesSubCommand;
-	private SetVarCommand setVarSubCommand;
-	private ExecuteProcessSubCommand executeProcessSubCommand;
-	private ListTasksSubCommand listTasksSubCommand;
-	private CompleteTaskSubCommand completeTaskSubCommand;
-	private SaveHistorySubCommand saveHistorySubCommand;
-	private ExecuteBatchSubCommand executeBatchSubCommand;
-	private ListVarsSubCommand listVarsSubCommand;
-	private ListHistorySubCommand listHistorySubCommand;
-	private LoadHistorySubCommand loadHistorySubCommand;
-	private GenerateImageSubCommand generateImageSubCommand;
-	private ClearHistorySubCommand clearHistorySubCommand;
 	private Logger logger =LoggerFactory.getLogger(FluflApplication.class);
 	private  static final  Path CWD = Paths.get(System.getProperty("user.dir"));
 @Autowired
@@ -61,7 +46,7 @@ public class FluflApplication implements CommandLineRunner {
 
 		})
 		static class CliCommands implements Runnable {
-	private 		Logger logger = LoggerFactory.getLogger(FluflApplication.class);
+	private 		Logger logger = LoggerFactory.getLogger(CliCommands.class);
 	private 		LineReaderImpl reader;
 			private PrintWriter out;
 
@@ -112,7 +97,6 @@ List<Runnable> commands;
 		final Parser parser = new DefaultParser();
 		systemRegistry = new SystemRegistryImpl(parser, terminal, null, null);
 		systemRegistry.setCommandRegistries(picocliCommands);
-		//commandLine.execute("status");
 		systemRegistry.cleanUp();
 		if (args.length>=1){
 
@@ -121,7 +105,7 @@ List<Runnable> commands;
 
 			executeHistory();
 		}else{
-			Boolean inCommandLineLoop =true;
+			boolean inCommandLineLoop =true;
 		while (inCommandLineLoop){
 			try{
 				systemRegistry.cleanUp();
@@ -163,8 +147,8 @@ List<Runnable> commands;
 }
 
 	private void executeHistory() {
-		List<String> commands=flowableService.getHistory();
-		Iterator<String> commandsIterator =commands.listIterator();
+		List<String> historyCommands=flowableService.getHistory();
+		Iterator<String> commandsIterator =historyCommands.listIterator();
 		while (commandsIterator.hasNext())
 			try {
 				String command =commandsIterator.next();
