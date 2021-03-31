@@ -11,6 +11,7 @@ import org.flowable.image.ProcessDiagramGenerator;
 import org.flowable.task.api.Task;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,7 +25,7 @@ import java.util.*;
  * Service class connecting Flufl commands with Flowable engine.
  */
 @Service
-public class FlowableServiceImpl implements FlowableService {
+public class FlowableServiceImpl implements FlowableService, DisposableBean {
     private ProcessInstance processInstance;
 
     private List<String> history = new ArrayList<>();
@@ -65,6 +66,7 @@ public class FlowableServiceImpl implements FlowableService {
     @Override
     public String status() {
         try {
+            processEngine.close();;
             repositoryService.createDeploymentQuery().list();
 
 
@@ -291,4 +293,8 @@ public class FlowableServiceImpl implements FlowableService {
         return processDefinition;
     }
 
+    @Override
+    public void destroy() throws Exception {
+        processEngine.close();
+    }
 }
