@@ -15,7 +15,6 @@ import org.jline.terminal.TerminalBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -31,20 +30,6 @@ import java.util.List;
 
 @SpringBootApplication
 public class FluflApplication implements CommandLineRunner {
-	private SetVarCommand.StatusSubCommand statusSubCommand;
-	private DeployProcessSubCommand deployProcessSubCommand;
-	private ListProcessesSubCommand listProcessesSubCommand;
-	private SetVarCommand setVarSubCommand;
-	private ExecuteProcessSubCommand executeProcessSubCommand;
-	private ListTasksSubCommand listTasksSubCommand;
-	private CompleteTaskSubCommand completeTaskSubCommand;
-	private SaveHistorySubCommand saveHistorySubCommand;
-	private ExecuteBatchSubCommand executeBatchSubCommand;
-	private ListVarsSubCommand listVarsSubCommand;
-	private ListHistorySubCommand listHistorySubCommand;
-	private LoadHistorySubCommand loadHistorySubCommand;
-	private GenerateImageSubCommand generateImageSubCommand;
-	private ClearHistorySubCommand clearHistorySubCommand;
 	private Logger logger =LoggerFactory.getLogger(FluflApplication.class);
 	private  static final  Path CWD = Paths.get(System.getProperty("user.dir"));
 @Autowired
@@ -97,6 +82,7 @@ List<Runnable> commands;
 	}
 	public static void main(String[] args) {
 		SpringApplication.run(FluflApplication.class, args);
+		System.out.println("Exit");
 	}
 
 	@Override
