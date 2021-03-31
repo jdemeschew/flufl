@@ -46,7 +46,7 @@ public class FluflApplication implements CommandLineRunner {
 
 		})
 		static class CliCommands implements Runnable {
-	private 		Logger logger = LoggerFactory.getLogger(FluflApplication.class);
+	private 		Logger logger = LoggerFactory.getLogger(CliCommands.class);
 	private 		LineReaderImpl reader;
 			private PrintWriter out;
 
@@ -82,7 +82,6 @@ List<Runnable> commands;
 	}
 	public static void main(String[] args) {
 		SpringApplication.run(FluflApplication.class, args);
-		System.out.println("Exit");
 	}
 
 	@Override
@@ -98,7 +97,6 @@ List<Runnable> commands;
 		final Parser parser = new DefaultParser();
 		systemRegistry = new SystemRegistryImpl(parser, terminal, null, null);
 		systemRegistry.setCommandRegistries(picocliCommands);
-		//commandLine.execute("status");
 		systemRegistry.cleanUp();
 		if (args.length>=1){
 
@@ -107,7 +105,7 @@ List<Runnable> commands;
 
 			executeHistory();
 		}else{
-			Boolean inCommandLineLoop =true;
+			boolean inCommandLineLoop =true;
 		while (inCommandLineLoop){
 			try{
 				systemRegistry.cleanUp();
@@ -149,8 +147,8 @@ List<Runnable> commands;
 }
 
 	private void executeHistory() {
-		List<String> commands=flowableService.getHistory();
-		Iterator<String> commandsIterator =commands.listIterator();
+		List<String> historyCommands=flowableService.getHistory();
+		Iterator<String> commandsIterator =historyCommands.listIterator();
 		while (commandsIterator.hasNext())
 			try {
 				String command =commandsIterator.next();
