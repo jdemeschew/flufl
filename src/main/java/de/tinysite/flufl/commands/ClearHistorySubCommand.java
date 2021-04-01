@@ -12,6 +12,7 @@ import picocli.CommandLine;
 @FluflCommand
  @CommandLine.Command(name ="clear-history")
  public class ClearHistorySubCommand implements Runnable {
+    @Autowired
     private FlowableService flowableService;
 
 

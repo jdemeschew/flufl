@@ -22,17 +22,15 @@ deleteTestImage();
 	@Test
 	public void testFluflApplication() {
 		FluflApplication.main(new String[] {TEST_FILE});
-		//assertTrue(new File(TEST_IMAGE_FILE).exists());
+		assertTrue(new File(TEST_IMAGE_FILE).exists());
 
 
 
-		FluflApplication.main(new String[] {TEST_FILE});
-		//assertTrue(new File(TEST_IMAGE_FILE).exists());
 	}
 
 	private void deleteTestImage(){
 		File testImage =new File(TEST_IMAGE_FILE);
-		//testImage.delete();
+		testImage.delete();
 	}
 
 }
