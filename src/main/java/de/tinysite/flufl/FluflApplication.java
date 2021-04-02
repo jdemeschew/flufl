@@ -46,7 +46,7 @@ public class FluflApplication implements CommandLineRunner {
 
 		})
 		static class CliCommands implements Runnable {
-	private 		Logger logger = LoggerFactory.getLogger(CliCommands.class);
+	private 		 static final Logger logger = LoggerFactory.getLogger(CliCommands.class);
 	private 		LineReaderImpl reader;
 			private PrintWriter out;
 
@@ -158,10 +158,7 @@ List<Runnable> commands;
 			} catch (Exception e) {
 				logger.error(e.getMessage());
 			}finally {
-				try {
-				} catch (Exception e) {
-					logger.error(e.getMessage());
 				}
 
 	}
-	}}
+	}

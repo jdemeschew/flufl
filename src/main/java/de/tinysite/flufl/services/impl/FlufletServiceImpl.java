@@ -1,14 +1,10 @@
 package de.tinysite.flufl.services.impl;
 
-import de.tinysite.flufl.FlowableServiceImpl;
 import de.tinysite.flufl.services.FlufletService;
-import liquibase.pro.packaged.M;
 import org.apache.commons.io.FileUtils;
-import org.h2.store.fs.FileChannelInputStream;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.yaml.snakeyaml.Yaml;
 
@@ -64,7 +60,6 @@ Yaml yaml =new Yaml();
         try {
             Map<String,Object> flufletConfig=yaml.load(new FileInputStream(configFile));
             Map<String,String> unInstallConfigValues = (Map<String, String>) flufletConfig.get("uninstall");
-            //installJar((flufletConfig.get("name").toString()),unInstallConfigValues.get("jar"));
             logger.info("uninstalling {} fluflet",flufletName);
             Path jarToBeDeleted =Paths.get(fluflEnvironmentPath,"lib",unInstallConfigValues.get("jar"));
             Path yamlTBeDeleted =Paths.get(fluflEnvironmentPath,"fluflets-definitions",flufletName+".yaml");

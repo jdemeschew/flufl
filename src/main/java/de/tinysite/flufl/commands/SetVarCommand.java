@@ -1,7 +1,6 @@
 package de.tinysite.flufl.commands;
 
 import de.tinysite.flufl.FlowableService;
-import de.tinysite.flufl.FlowableServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,7 +51,6 @@ If applied after complete-task, the param  will be available in the next running
      {
 flowableService.setVar(name,value);
      }
-    // ApplicationContext context = ApplicationContextProvider.getApplicationContext();
 @Autowired
     public void setFlowableService(FlowableService flowableService) {
 
@@ -63,7 +61,7 @@ flowableService.setVar(name,value);
     @Component
      @CommandLine.Command(name ="status",description="outputs Flowable engine status")
      public static class StatusSubCommand implements Runnable {
-        private Logger logger = LoggerFactory.getLogger(FlowableServiceImpl.class);
+        private Logger logger = LoggerFactory.getLogger(StatusSubCommand.class);
         private FlowableService flowableService;
 
 

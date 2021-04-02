@@ -20,7 +20,7 @@ public class FluflApplicationIT {
 deleteTestImage();
 	}
 	@Test
-	public void testFluflApplication() {
+	void testFluflApplication() {
 		FluflApplication.main(new String[] {TEST_FILE});
 		assertTrue(new File(TEST_IMAGE_FILE).exists());
 

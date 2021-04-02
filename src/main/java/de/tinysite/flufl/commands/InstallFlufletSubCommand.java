@@ -2,15 +2,12 @@ package de.tinysite.flufl.commands;
 
 import de.tinysite.flufl.FlowableService;
 import de.tinysite.flufl.services.FlufletService;
-import de.tinysite.flufl.services.impl.FlufletServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import picocli.CommandLine;
-
-import java.util.List;
 
 /*
 Lists  fluflets according to specified filter.
@@ -20,7 +17,7 @@ Lists  fluflets according to specified filter.
 @Component
 @FluflCommand
 public class InstallFlufletSubCommand implements Runnable {
-    private final Logger logger = LoggerFactory.getLogger(InstallFlufletSubCommand.class);
+    private static final Logger logger = LoggerFactory.getLogger(InstallFlufletSubCommand.class);
    @Value("${fluflets.repository.path:}")
    String flufletsRepositoryPath="";
    @Autowired
